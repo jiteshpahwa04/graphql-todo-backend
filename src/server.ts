@@ -2,8 +2,11 @@ import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
 import { typeDefs } from "./typedefs";
 import resolvers from "./resolvers";
+import mongoose from "mongoose";
+import { ServerConfig } from "./config/server.config";
 
 async function startServer() {
+  await mongoose.connect(ServerConfig.MONGODB_URL);
   const server = new ApolloServer({
     typeDefs: typeDefs,
     resolvers: resolvers,
