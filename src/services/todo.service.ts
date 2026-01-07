@@ -10,7 +10,8 @@ class TodoService {
     return await this.todoRepository.getAllTodos();
   }
 
-  async createTodo(title: string, tags: string[]) {
+  async createTodo(title: string, tags: string[], token: string) {
+    console.log("Token from context:", token);
     return await this.todoRepository.createTodo(title, tags);
   }
 }

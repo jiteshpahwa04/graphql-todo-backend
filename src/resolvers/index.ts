@@ -9,8 +9,11 @@ const resolvers = {
     getTodos: () => todoService.getAllTodos(),
   },
   Mutation: {
-    createTodo: (_: any, args: { title: string; tags: string[] }) =>
-      todoService.createTodo(args.title, args.tags),
+    createTodo: (
+      _: any,
+      args: { title: string; tags: string[] },
+      context: { token: string }
+    ) => todoService.createTodo(args.title, args.tags, context.token),
   },
 };
 

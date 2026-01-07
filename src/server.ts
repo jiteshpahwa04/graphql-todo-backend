@@ -14,6 +14,15 @@ async function startServer() {
 
   const { url } = await startStandaloneServer(server, {
     listen: { port: 4000 },
+    context: async ({ req }) => {
+      const token = req.headers.authorization || "";
+      // You can add authentication logic here using the token if needed
+      // const user = getUserFromToken(token); // hypothetical function
+      // return {user};
+      return {
+        token, // This can be accessed in resolvers via context
+      };
+    },
   });
 
   console.log(`🚀 GraphQL Server ready at ${url}`);
