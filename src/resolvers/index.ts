@@ -6,7 +6,7 @@ const todoService = new TodoService(todoRepository);
 
 const resolvers = {
   Query: {
-    getTodos: todoService.getAllTodos,
+    getTodos: () => todoService.getAllTodos(),
   },
   Mutation: {
     createTodo: (_: any, args: { title: string; tags: string[] }) =>
